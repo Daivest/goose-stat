@@ -1,0 +1,512 @@
+<!doctype html><html lang="ru"><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Карты — разрезы</title><style>
+:root{color-scheme:dark;--bg:#101a20;--panel:#1a2931;--line:#3a4a51;--muted:#adc0c8;--mint:#b6ebba;--gold:#f6cd83}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#f2f5ed;font:16px/1.6 system-ui,sans-serif}
+main{max-width:1080px;margin:auto;padding:44px 22px 80px}
+header{padding:22px 0 34px;border-bottom:1px solid var(--line)}
+.site-nav{display:flex;gap:18px;margin-bottom:28px;font-size:14px}
+.site-nav a{color:var(--mint)}
+.site-nav a[aria-current=page]{color:#f2f5ed;text-decoration:none}
+.eyebrow{text-transform:uppercase;letter-spacing:.17em;color:var(--mint);font-size:12px}
+h1{font:clamp(32px,5vw,54px)/1.08 Georgia,serif;margin:18px 0 10px}
+h2{font:27px Georgia,serif;margin:0 0 6px}
+h3{font:19px Georgia,serif;margin:34px 0 4px;color:#dfe8ec}
+p{color:var(--muted);margin:8px 0}
+section{margin-top:46px}
+.note{background:var(--panel);border-left:3px solid var(--gold);padding:14px 18px;border-radius:0 10px 10px 0}
+.note p{margin:4px 0;color:#dfe8ec}
+.row{display:grid;grid-template-columns:minmax(120px,150px) 1fr 96px;gap:12px;align-items:center;margin:9px 0}
+.name{font-size:14px;text-align:right;color:#dfe8ec}
+.thin{color:var(--muted);font-size:12px}
+.bar{display:flex;height:22px;border-radius:6px;overflow:hidden;background:#25353d}
+.bar span{display:block}
+.num{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+.row.weak{opacity:.4}
+.legend{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0 0;font-size:13px;color:var(--muted)}
+.legend b{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px}
+table{border-collapse:collapse;width:100%;font-size:13px;margin-top:12px}
+th,td{border-bottom:1px solid var(--line);padding:7px 8px;text-align:right}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:400}
+.tiles{display:flex;flex-wrap:wrap;gap:3px;margin:4px 0 16px}
+.tile{width:22px;height:22px;border-radius:4px}
+.evening{display:grid;grid-template-columns:78px 1fr;gap:12px;align-items:start;margin:10px 0}
+.evening b{color:var(--gold);font:15px Georgia,serif}
+.wrap{overflow-x:auto}
+.small{color:#8fa2ab;font-size:12px}
+.fact{background:#17262d;border-left:3px solid var(--mint);padding:12px 16px;border-radius:0 10px 10px 0;margin:18px 0 0;color:#dfe8ec;font-size:14px}
+.fact b{color:var(--mint)}
+.tile{cursor:pointer}
+#pop{position:fixed;z-index:9;background:#22333b;border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:13px;color:#f2f5ed;box-shadow:0 10px 26px #000a;pointer-events:none;max-width:260px}
+#pop[hidden]{display:none}
+</style><main>
+<header><nav class="site-nav" aria-label="Разделы статистики"><a href="../">Общая статистика</a><a href="./" aria-current="page">Карты</a></nav><h1>Что происходило<br>на каждой карте</h1>
+<p>10 карт, 305 партий, 14 игровых вечеров. Ниже — по порядку: сколько мы видели каждой карты, где гусям было проще, чем эта простота кончалась, кто доживал до финала и сколько это всё длилось.</p></header>
+<section><h2>Карты идут сериями</h2>
+<p>Плитка — партия, цвет — карта, порядок слева направо — порядок партий внутри вечера. Нажмите на плитку, чтобы посмотреть, что это было. Лобби играет подряд несколько партий на одной карте и только потом переходит на другую, и ни в одном вечере не возвращается на уже сыгранную: это заодно бесплатная проверка распознавания, и она проходит.</p>
+<div class="evening"><b>#90<br><span class="thin">13 июня</span></b><div class="tiles">
+<div class="tile" style="background:#e0b465" data-info="#90.1, партия 1 &middot; 13 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#90.1, партия 2 &middot; 13 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#90.1, партия 3 &middot; 13 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#90.1, партия 4 &middot; 13 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#90.1, партия 5 &middot; 13 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#90.1, партия 6 &middot; 13 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#90.1, партия 7 &middot; 13 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#a99ae0" data-info="#90.1, партия 8 &middot; 13 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#90.2, партия 1 &middot; 13 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#90.2, партия 2 &middot; 13 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#90.2, партия 3 &middot; 13 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#90.2, партия 4 &middot; 13 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#90.2, партия 5 &middot; 13 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#90.2, партия 6 &middot; 13 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#e2739b" data-info="#90.2, партия 7 &middot; 13 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#90.3, партия 1 &middot; 13 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#90.3, партия 2 &middot; 13 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#90.3, партия 3 &middot; 13 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#90.3, партия 4 &middot; 13 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#90.3, партия 5 &middot; 13 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#90.3, партия 6 &middot; 13 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#90.3, партия 7 &middot; 13 июня &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#90.3, партия 8 &middot; 13 июня &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#90.3, партия 9 &middot; 13 июня &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#90.3, партия 10 &middot; 13 июня &middot; Гусчэпл"></div>
+</div></div>
+<div class="evening"><b>#91<br><span class="thin">20 июня</span></b><div class="tiles">
+<div class="tile" style="background:#8fb4e8" data-info="#91.1, партия 1 &middot; 20 июня &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#91.1, партия 2 &middot; 20 июня &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#91.1, партия 3 &middot; 20 июня &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#91.1, партия 4 &middot; 20 июня &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#91.1, партия 5 &middot; 20 июня &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#91.1, партия 6 &middot; 20 июня &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#e8a06a" data-info="#91.1, партия 7 &middot; 20 июня &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#91.2, партия 1 &middot; 20 июня &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#91.2, партия 2 &middot; 20 июня &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#91.2, партия 3 &middot; 20 июня &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#91.2, партия 4 &middot; 20 июня &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#91.2, партия 5 &middot; 20 июня &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#91.2, партия 6 &middot; 20 июня &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#91.3, партия 1 &middot; 20 июня &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#91.3, партия 2 &middot; 20 июня &middot; Гусчэпл"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#91.3, партия 3 &middot; 20 июня &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#91.3, партия 4 &middot; 20 июня &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#91.3, партия 5 &middot; 20 июня &middot; Усадьба Крякв"></div>
+</div></div>
+<div class="evening"><b>#92<br><span class="thin">27 июня</span></b><div class="tiles">
+<div class="tile" style="background:#e0b465" data-info="#92.1, партия 1 &middot; 27 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#92.1, партия 2 &middot; 27 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#92.1, партия 3 &middot; 27 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#92.1, партия 4 &middot; 27 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#92.1, партия 5 &middot; 27 июня &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#a99ae0" data-info="#92.1, партия 6 &middot; 27 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#92.1, партия 7 &middot; 27 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#92.1, партия 8 &middot; 27 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#92.2, партия 1 &middot; 27 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#92.2, партия 2 &middot; 27 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#92.2, партия 3 &middot; 27 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#92.2, партия 4 &middot; 27 июня &middot; Маллардон"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.2, партия 5 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.2, партия 6 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.2, партия 7 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.3, партия 1 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.3, партия 2 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.3, партия 3 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.3, партия 4 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.3, партия 5 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.3, партия 6 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.3, партия 7 &middot; 27 июня &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#92.3, партия 8 &middot; 27 июня &middot; Карнавал"></div>
+</div></div>
+<div class="evening"><b>#93<br><span class="thin">4 июля</span></b><div class="tiles">
+<div class="tile" style="background:#a99ae0" data-info="#93.1, партия 1 &middot; 4 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#93.1, партия 2 &middot; 4 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#93.1, партия 3 &middot; 4 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#93.1, партия 4 &middot; 4 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#93.1, партия 5 &middot; 4 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#93.1, партия 6 &middot; 4 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#93.1, партия 7 &middot; 4 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#93.1, партия 8 &middot; 4 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#93.2, партия 1 &middot; 4 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#8b8f96" data-info="#93.2, партия 2 &middot; 4 июля &middot; Подвал"></div>
+<div class="tile" style="background:#8b8f96" data-info="#93.2, партия 3 &middot; 4 июля &middot; Подвал"></div>
+<div class="tile" style="background:#8b8f96" data-info="#93.2, партия 4 &middot; 4 июля &middot; Подвал"></div>
+<div class="tile" style="background:#8b8f96" data-info="#93.2, партия 5 &middot; 4 июля &middot; Подвал"></div>
+<div class="tile" style="background:#8b8f96" data-info="#93.2, партия 6 &middot; 4 июля &middot; Подвал"></div>
+<div class="tile" style="background:#e0b465" data-info="#93.2, партия 7 &middot; 4 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#93.3, партия 1 &middot; 4 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#93.3, партия 2 &middot; 4 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#93.3, партия 3 &middot; 4 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#93.3, партия 4 &middot; 4 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#93.3, партия 5 &middot; 4 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#93.3, партия 6 &middot; 4 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#93.3, партия 7 &middot; 4 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#93.3, партия 8 &middot; 4 июля &middot; Древняя пустыня"></div>
+</div></div>
+<div class="evening"><b>#94<br><span class="thin">11 июля</span></b><div class="tiles">
+<div class="tile" style="background:#e2739b" data-info="#94.1, партия 1 &middot; 11 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#94.1, партия 2 &middot; 11 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#94.1, партия 3 &middot; 11 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#94.1, партия 4 &middot; 11 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#94.1, партия 5 &middot; 11 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#94.1, партия 6 &middot; 11 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#94.1, партия 7 &middot; 11 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#94.1, партия 8 &middot; 11 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#94.2, партия 1 &middot; 11 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#94.2, партия 2 &middot; 11 июля &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#94.2, партия 3 &middot; 11 июля &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#94.2, партия 4 &middot; 11 июля &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#94.2, партия 5 &middot; 11 июля &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#94.2, партия 6 &middot; 11 июля &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#94.3, партия 1 &middot; 11 июля &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#94.3, партия 2 &middot; 11 июля &middot; Гусчэпл"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#94.3, партия 3 &middot; 11 июля &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#94.3, партия 4 &middot; 11 июля &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#94.3, партия 5 &middot; 11 июля &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#94.3, партия 6 &middot; 11 июля &middot; Иглтон спрингс"></div>
+</div></div>
+<div class="evening"><b>#95<br><span class="thin">18 июля</span></b><div class="tiles">
+<div class="tile" style="background:#e0b465" data-info="#95.1, партия 1 &middot; 18 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#95.1, партия 2 &middot; 18 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#95.1, партия 3 &middot; 18 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#95.1, партия 4 &middot; 18 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#95.1, партия 5 &middot; 18 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#95.1, партия 6 &middot; 18 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#95.1, партия 7 &middot; 18 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#a99ae0" data-info="#95.1, партия 8 &middot; 18 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#95.2, партия 1 &middot; 18 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#95.2, партия 2 &middot; 18 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#95.2, партия 3 &middot; 18 июля &middot; Маллардон"></div>
+<div class="tile" style="background:#e2739b" data-info="#95.2, партия 4 &middot; 18 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#95.2, партия 5 &middot; 18 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#95.2, партия 6 &middot; 18 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#95.2, партия 7 &middot; 18 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#95.2, партия 8 &middot; 18 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#95.2, партия 9 &middot; 18 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#95.3, партия 1 &middot; 18 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#95.3, партия 2 &middot; 18 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#95.3, партия 3 &middot; 18 июля &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#95.3, партия 4 &middot; 18 июля &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#95.3, партия 5 &middot; 18 июля &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#95.3, партия 6 &middot; 18 июля &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#95.3, партия 7 &middot; 18 июля &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#95.3, партия 8 &middot; 18 июля &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#95.3, партия 9 &middot; 18 июля &middot; Усадьба Крякв"></div>
+</div></div>
+<div class="evening"><b>#96<br><span class="thin">25 июля</span></b><div class="tiles">
+<div class="tile" style="background:#e8a06a" data-info="#96.1, партия 1 &middot; 25 июля &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#96.1, партия 2 &middot; 25 июля &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#96.1, партия 3 &middot; 25 июля &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#96.1, партия 4 &middot; 25 июля &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#96.1, партия 5 &middot; 25 июля &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#96.1, партия 6 &middot; 25 июля &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#96.1, партия 7 &middot; 25 июля &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#96.2, партия 1 &middot; 25 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#96.2, партия 2 &middot; 25 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#96.2, партия 3 &middot; 25 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#96.2, партия 4 &middot; 25 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#96.2, партия 5 &middot; 25 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#96.2, партия 6 &middot; 25 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#96.2, партия 7 &middot; 25 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#96.3, партия 1 &middot; 25 июля &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e2739b" data-info="#96.3, партия 2 &middot; 25 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#96.3, партия 3 &middot; 25 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#96.3, партия 4 &middot; 25 июля &middot; Карнавал"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#96.3, партия 5 &middot; 25 июля &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#96.3, партия 6 &middot; 25 июля &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#96.3, партия 7 &middot; 25 июля &middot; Усадьба Крякв"></div>
+</div></div>
+<div class="evening"><b>#97<br><span class="thin">1 августа</span></b><div class="tiles">
+<div class="tile" style="background:#a99ae0" data-info="#97.1, партия 1 &middot; 1 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#97.1, партия 2 &middot; 1 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#97.1, партия 3 &middot; 1 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#97.1, партия 4 &middot; 1 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#97.1, партия 5 &middot; 1 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#97.1, партия 6 &middot; 1 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#6f7bd4" data-info="#97.1, партия 7 &middot; 1 августа &middot; Черный лебедь"></div>
+<div class="tile" style="background:#6f7bd4" data-info="#97.2, партия 1 &middot; 1 августа &middot; Черный лебедь"></div>
+<div class="tile" style="background:#6f7bd4" data-info="#97.2, партия 2 &middot; 1 августа &middot; Черный лебедь"></div>
+<div class="tile" style="background:#6f7bd4" data-info="#97.2, партия 3 &middot; 1 августа &middot; Черный лебедь"></div>
+<div class="tile" style="background:#6f7bd4" data-info="#97.2, партия 4 &middot; 1 августа &middot; Черный лебедь"></div>
+<div class="tile" style="background:#6f7bd4" data-info="#97.2, партия 5 &middot; 1 августа &middot; Черный лебедь"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 1 &middot; 1 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 2 &middot; 1 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 3 &middot; 1 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 4 &middot; 1 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 5 &middot; 1 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 6 &middot; 1 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 7 &middot; 1 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 8 &middot; 1 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 9 &middot; 1 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#97.3, партия 10 &middot; 1 августа &middot; Древняя пустыня"></div>
+</div></div>
+<div class="evening"><b>#98<br><span class="thin">8 августа</span></b><div class="tiles">
+<div class="tile" style="background:#8fb4e8" data-info="#98.1, партия 1 &middot; 8 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#98.1, партия 2 &middot; 8 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#98.1, партия 3 &middot; 8 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#98.1, партия 4 &middot; 8 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#98.1, партия 5 &middot; 8 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.1, партия 6 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.1, партия 7 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.1, партия 8 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.1, партия 9 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.1, партия 10 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.2, партия 1 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.2, партия 2 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.2, партия 3 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.2, партия 4 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#98.2, партия 5 &middot; 8 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#98.2, партия 6 &middot; 8 августа &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#98.3, партия 1 &middot; 8 августа &middot; Гусчэпл"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#98.3, партия 2 &middot; 8 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#98.3, партия 3 &middot; 8 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#98.3, партия 4 &middot; 8 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#98.3, партия 5 &middot; 8 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#a99ae0" data-info="#98.3, партия 6 &middot; 8 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#98.3, партия 7 &middot; 8 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#98.3, партия 8 &middot; 8 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#98.3, партия 9 &middot; 8 августа &middot; Маллардон"></div>
+</div></div>
+<div class="evening"><b>#99<br><span class="thin">15 августа</span></b><div class="tiles">
+<div class="tile" style="background:#8fb4e8" data-info="#99.1, партия 1 &middot; 15 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#99.1, партия 2 &middot; 15 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#99.1, партия 3 &middot; 15 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#99.1, партия 4 &middot; 15 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#99.1, партия 5 &middot; 15 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#a99ae0" data-info="#99.1, партия 6 &middot; 15 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#e2739b" data-info="#99.1, партия 7 &middot; 15 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#99.2, партия 1 &middot; 15 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#99.2, партия 2 &middot; 15 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#99.2, партия 3 &middot; 15 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#99.2, партия 4 &middot; 15 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.2, партия 5 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.2, партия 6 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.2, партия 7 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.2, партия 8 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.3, партия 1 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.3, партия 2 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.3, партия 3 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.3, партия 4 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.3, партия 5 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.3, партия 6 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.3, партия 7 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.3, партия 8 &middot; 15 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#99.3, партия 9 &middot; 15 августа &middot; Древняя пустыня"></div>
+</div></div>
+<div class="evening"><b>#100<br><span class="thin">22 августа</span></b><div class="tiles">
+<div class="tile" style="background:#e8a06a" data-info="#100.1, партия 1 &middot; 22 августа &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#100.1, партия 2 &middot; 22 августа &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#100.1, партия 3 &middot; 22 августа &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#100.1, партия 4 &middot; 22 августа &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#100.1, партия 5 &middot; 22 августа &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#100.1, партия 6 &middot; 22 августа &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#a99ae0" data-info="#100.2, партия 1 &middot; 22 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#100.2, партия 2 &middot; 22 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#100.2, партия 3 &middot; 22 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#100.2, партия 4 &middot; 22 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#100.2, партия 5 &middot; 22 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#100.2, партия 6 &middot; 22 августа &middot; Маллардон"></div>
+<div class="tile" style="background:#e0b465" data-info="#100.3, партия 1 &middot; 22 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#100.3, партия 2 &middot; 22 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#100.3, партия 3 &middot; 22 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#100.3, партия 4 &middot; 22 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#100.3, партия 5 &middot; 22 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#100.3, партия 6 &middot; 22 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#100.3, партия 7 &middot; 22 августа &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#100.3, партия 8 &middot; 22 августа &middot; Древняя пустыня"></div>
+</div></div>
+<div class="evening"><b>#101<br><span class="thin">29 августа</span></b><div class="tiles">
+<div class="tile" style="background:#c9a3d8" data-info="#101.1, партия 1 &middot; 29 августа &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#101.1, партия 2 &middot; 29 августа &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#101.1, партия 3 &middot; 29 августа &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#101.1, партия 4 &middot; 29 августа &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#101.1, партия 5 &middot; 29 августа &middot; Гусчэпл"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#101.1, партия 6 &middot; 29 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#101.1, партия 7 &middot; 29 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#101.2, партия 1 &middot; 29 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8fb4e8" data-info="#101.2, партия 2 &middot; 29 августа &middot; Иглтон спрингс"></div>
+<div class="tile" style="background:#8b8f96" data-info="#101.2, партия 3 &middot; 29 августа &middot; Подвал"></div>
+<div class="tile" style="background:#8b8f96" data-info="#101.2, партия 4 &middot; 29 августа &middot; Подвал"></div>
+<div class="tile" style="background:#8b8f96" data-info="#101.2, партия 5 &middot; 29 августа &middot; Подвал"></div>
+<div class="tile" style="background:#e2739b" data-info="#101.2, партия 6 &middot; 29 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#101.2, партия 7 &middot; 29 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#101.2, партия 8 &middot; 29 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#101.2, партия 9 &middot; 29 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#101.3, партия 1 &middot; 29 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#101.3, партия 2 &middot; 29 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#101.3, партия 3 &middot; 29 августа &middot; Карнавал"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#101.3, партия 4 &middot; 29 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#101.3, партия 5 &middot; 29 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#101.3, партия 6 &middot; 29 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#101.3, партия 7 &middot; 29 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#101.3, партия 8 &middot; 29 августа &middot; Усадьба Крякв"></div>
+<div class="tile" style="background:#7fc7a4" data-info="#101.3, партия 9 &middot; 29 августа &middot; Усадьба Крякв"></div>
+</div></div>
+<div class="evening"><b>#102<br><span class="thin">5 сентября</span></b><div class="tiles">
+<div class="tile" style="background:#a99ae0" data-info="#102.1, партия 1 &middot; 5 сентября &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#102.1, партия 2 &middot; 5 сентября &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#102.1, партия 3 &middot; 5 сентября &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#102.1, партия 4 &middot; 5 сентября &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#102.1, партия 5 &middot; 5 сентября &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#102.1, партия 6 &middot; 5 сентября &middot; Маллардон"></div>
+<div class="tile" style="background:#a99ae0" data-info="#102.1, партия 7 &middot; 5 сентября &middot; Маллардон"></div>
+<div class="tile" style="background:#e8a06a" data-info="#102.1, партия 8 &middot; 5 сентября &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#102.1, партия 9 &middot; 5 сентября &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e8a06a" data-info="#102.2, партия 1 &middot; 5 сентября &middot; Матушка гусыня"></div>
+<div class="tile" style="background:#e2739b" data-info="#102.2, партия 2 &middot; 5 сентября &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#102.2, партия 3 &middot; 5 сентября &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#102.2, партия 4 &middot; 5 сентября &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#102.2, партия 5 &middot; 5 сентября &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#102.2, партия 6 &middot; 5 сентября &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#102.2, партия 7 &middot; 5 сентября &middot; Карнавал"></div>
+<div class="tile" style="background:#e2739b" data-info="#102.2, партия 8 &middot; 5 сентября &middot; Карнавал"></div>
+<div class="tile" style="background:#8b8f96" data-info="#102.3, партия 1 &middot; 5 сентября &middot; Кровавая гавань"></div>
+<div class="tile" style="background:#e0b465" data-info="#102.3, партия 2 &middot; 5 сентября &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#102.3, партия 3 &middot; 5 сентября &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#102.3, партия 4 &middot; 5 сентября &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#102.3, партия 5 &middot; 5 сентября &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#102.3, партия 6 &middot; 5 сентября &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#102.3, партия 7 &middot; 5 сентября &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#102.3, партия 8 &middot; 5 сентября &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#102.3, партия 9 &middot; 5 сентября &middot; Древняя пустыня"></div>
+<div class="tile" style="background:#e0b465" data-info="#102.3, партия 10 &middot; 5 сентября &middot; Древняя пустыня"></div>
+</div></div>
+<div class="evening"><b>#103<br><span class="thin">12 сентября</span></b><div class="tiles">
+<div class="tile" style="background:#c9a3d8" data-info="#103.1, партия 1 &middot; 12 сентября &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#103.1, партия 2 &middot; 12 сентября &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#103.1, партия 3 &middot; 12 сентября &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#103.1, партия 4 &middot; 12 сентября &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#103.1, партия 5 &middot; 12 сентября &middot; Гусчэпл"></div>
+<div class="tile" style="background:#c9a3d8" data-info="#103.1, партия 6 &middot; 12 сентября &middot; Гусчэпл"></div>
+</div></div>
+<div class="legend">
+<span><b style="background:#e0b465"></b>Древняя пустыня</span>
+<span><b style="background:#e2739b"></b>Карнавал</span>
+<span><b style="background:#a99ae0"></b>Маллардон</span>
+<span><b style="background:#7fc7a4"></b>Усадьба Крякв</span>
+<span><b style="background:#c9a3d8"></b>Гусчэпл</span>
+<span><b style="background:#e8a06a"></b>Матушка гусыня</span>
+<span><b style="background:#8fb4e8"></b>Иглтон спрингс</span>
+<span><b style="background:#8b8f96"></b>Подвал</span>
+<span><b style="background:#6f7bd4"></b>Черный лебедь</span>
+<span><b style="background:#8b8f96"></b>Кровавая гавань</span>
+</div>
+<div class="fact"><b>Фанфакт.</b> Рекорд усидчивости — <b>13 партий подряд</b> на одной карте (Древняя пустыня, вечер #99). А за целый вечер компания меняет карту самое большее 4 раза: сели и играют.</div>
+</section>
+<section><h2>Сколько на какой сыграли</h2>
+<p>С этого стоит начинать: половина всех партий пришлась на три карты, а нижние три вместе не набирают и двадцати. Дальше это число решает, какой строке верить. Цвет внутри полосы — чем эти партии кончились.</p>
+<div class="row"><div class="name">Древняя пустыня</div><div class="bar" style="width:100.00%"><span style="width:57.8947%;background:#b6ebba" title="гуси: 44"></span><span style="width:21.0526%;background:#f08a8a" title="утки: 16"></span><span style="width:21.0526%;background:#f6cd83" title="нейтралы: 16"></span></div><div class="num">76 партий</div></div>
+<div class="row"><div class="name">Карнавал</div><div class="bar" style="width:85.53%"><span style="width:41.5385%;background:#b6ebba" title="гуси: 27"></span><span style="width:33.8462%;background:#f08a8a" title="утки: 22"></span><span style="width:21.5385%;background:#f6cd83" title="нейтралы: 14"></span><span style="width:3.0769%;background:#e2a6c4" title="любовники: 2"></span></div><div class="num">65 партий</div></div>
+<div class="row"><div class="name">Маллардон</div><div class="bar" style="width:67.11%"><span style="width:52.9412%;background:#b6ebba" title="гуси: 27"></span><span style="width:23.5294%;background:#f08a8a" title="утки: 12"></span><span style="width:23.5294%;background:#f6cd83" title="нейтралы: 12"></span></div><div class="num">51 партия</div></div>
+<div class="row"><div class="name">Усадьба Крякв</div><div class="bar" style="width:32.89%"><span style="width:68.0000%;background:#b6ebba" title="гуси: 17"></span><span style="width:8.0000%;background:#f08a8a" title="утки: 2"></span><span style="width:24.0000%;background:#f6cd83" title="нейтралы: 6"></span></div><div class="num">25 партий</div></div>
+<div class="row"><div class="name">Гусчэпл</div><div class="bar" style="width:32.89%"><span style="width:44.0000%;background:#b6ebba" title="гуси: 11"></span><span style="width:20.0000%;background:#f08a8a" title="утки: 5"></span><span style="width:36.0000%;background:#f6cd83" title="нейтралы: 9"></span></div><div class="num">25 партий</div></div>
+<div class="row"><div class="name">Матушка гусыня</div><div class="bar" style="width:31.58%"><span style="width:62.5000%;background:#b6ebba" title="гуси: 15"></span><span style="width:12.5000%;background:#f08a8a" title="утки: 3"></span><span style="width:25.0000%;background:#f6cd83" title="нейтралы: 6"></span></div><div class="num">24 партии</div></div>
+<div class="row"><div class="name">Иглтон спрингс</div><div class="bar" style="width:31.58%"><span style="width:54.1667%;background:#b6ebba" title="гуси: 13"></span><span style="width:25.0000%;background:#f08a8a" title="утки: 6"></span><span style="width:20.8333%;background:#f6cd83" title="нейтралы: 5"></span></div><div class="num">24 партии</div></div>
+<div class="row weak"><div class="name">Подвал</div><div class="bar" style="width:10.53%"><span style="width:25.0000%;background:#b6ebba" title="гуси: 2"></span><span style="width:37.5000%;background:#f08a8a" title="утки: 3"></span><span style="width:37.5000%;background:#f6cd83" title="нейтралы: 3"></span></div><div class="num">8 партий</div></div>
+<div class="row weak"><div class="name">Черный лебедь</div><div class="bar" style="width:7.89%"><span style="width:83.3333%;background:#b6ebba" title="гуси: 5"></span><span style="width:16.6667%;background:#f6cd83" title="нейтралы: 1"></span></div><div class="num">6 партий</div></div>
+<div class="row weak"><div class="name">Кровавая гавань</div><div class="bar" style="width:1.32%"><span style="width:100.0000%;background:#b6ebba" title="гуси: 1"></span></div><div class="num">1 партия</div></div>
+<div class="legend">
+<span><b style="background:#b6ebba"></b>гуси</span>
+<span><b style="background:#f08a8a"></b>утки</span>
+<span><b style="background:#f6cd83"></b>нейтралы</span>
+<span><b style="background:#e2a6c4"></b>любовники</span>
+<span class="small">блёклые — карты, где партий меньше десяти: дальше они везде показаны так же</span>
+</div>
+<div class="fact"><b>Фанфакт.</b> Одну карту доставали в <b>9 вечерах из 14</b> — это Древняя пустыня. А вот Черный лебедь: ровно один вечер, 6 партий, и больше не возвращались.</div>
+</section>
+<section><h2>Где гусям было проще</h2>
+<p>Гуси выигрывают чуть больше половины партий вообще. Здесь — где больше, а где меньше: точка стоит на доле побед гусей, пунктир показывает общий уровень. Размер точки — число партий, то самое из прошлого разреза.</p>
+<div class="wrap"><svg viewBox="0 0 1000 388" width="100%" role="img"><line x1="208.0" y1="38" x2="208.0" y2="358" stroke="#2b3b43"/><text x="208.0" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">0%</text><line x1="370.5" y1="38" x2="370.5" y2="358" stroke="#2b3b43"/><text x="370.5" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">25%</text><line x1="533.0" y1="38" x2="533.0" y2="358" stroke="#2b3b43"/><text x="533.0" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">50%</text><line x1="695.5" y1="38" x2="695.5" y2="358" stroke="#2b3b43"/><text x="695.5" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">75%</text><line x1="858.0" y1="38" x2="858.0" y2="358" stroke="#2b3b43"/><text x="858.0" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">100%</text><line x1="553.2" y1="38" x2="553.2" y2="358" stroke="#f6cd83" stroke-width="1.5" stroke-dasharray="4 4" opacity=".8"/><text x="553.2" y="376" fill="#f6cd83" font-size="12" text-anchor="middle">общий уровень 53%</text><text x="200" y="68.0" fill="#8fa2ab" font-size="13" text-anchor="end">Кровавая гавань</text><line x1="342.3" y1="69.0" x2="858.0" y2="69.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><line x1="342.3" y1="65.0" x2="342.3" y2="73.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><line x1="858.0" y1="65.0" x2="858.0" y2="73.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><circle cx="858.0" cy="69.0" r="5.4" fill="#8b8f96" fill-opacity=".35" stroke="#8b8f96" stroke-opacity=".35"><title>Кровавая гавань: гуси 1, утки 0, нейтралы 0 из 1 партий; усы 21-100%</title></circle><text x="872" y="73.0" fill="#8fa2ab" font-size="12">1 из 1</text><text x="200" y="98.0" fill="#8fa2ab" font-size="13" text-anchor="end">Черный лебедь</text><line x1="491.7" y1="99.0" x2="838.5" y2="99.0" stroke="#6f7bd4" stroke-width="2" opacity=".22"/><line x1="491.7" y1="95.0" x2="491.7" y2="103.0" stroke="#6f7bd4" stroke-width="2" opacity=".22"/><line x1="838.5" y1="95.0" x2="838.5" y2="103.0" stroke="#6f7bd4" stroke-width="2" opacity=".22"/><circle cx="749.7" cy="99.0" r="6.7" fill="#6f7bd4" fill-opacity=".35" stroke="#6f7bd4" stroke-opacity=".35"><title>Черный лебедь: гуси 5, утки 0, нейтралы 1 из 6 партий; усы 44-97%</title></circle><text x="872" y="103.0" fill="#8fa2ab" font-size="12">5 из 6</text><text x="200" y="128.0" fill="#dfe8ec" font-size="13" text-anchor="end">Усадьба Крякв</text><line x1="522.7" y1="129.0" x2="746.2" y2="129.0" stroke="#7fc7a4" stroke-width="2" opacity=".45"/><line x1="522.7" y1="125.0" x2="522.7" y2="133.0" stroke="#7fc7a4" stroke-width="2" opacity=".45"/><line x1="746.2" y1="125.0" x2="746.2" y2="133.0" stroke="#7fc7a4" stroke-width="2" opacity=".45"/><circle cx="650.0" cy="129.0" r="9.1" fill="#7fc7a4" fill-opacity=".85" stroke="#7fc7a4" stroke-opacity=".85"><title>Усадьба Крякв: гуси 17, утки 2, нейтралы 6 из 25 партий; усы 48-83%</title></circle><text x="872" y="133.0" fill="#8fa2ab" font-size="12">17 из 25</text><text x="200" y="158.0" fill="#dfe8ec" font-size="13" text-anchor="end">Матушка гусыня</text><line x1="485.6" y1="159.0" x2="720.5" y2="159.0" stroke="#e8a06a" stroke-width="2" opacity=".45"/><line x1="485.6" y1="155.0" x2="485.6" y2="163.0" stroke="#e8a06a" stroke-width="2" opacity=".45"/><line x1="720.5" y1="155.0" x2="720.5" y2="163.0" stroke="#e8a06a" stroke-width="2" opacity=".45"/><circle cx="614.2" cy="159.0" r="9.0" fill="#e8a06a" fill-opacity=".85" stroke="#e8a06a" stroke-opacity=".85"><title>Матушка гусыня: гуси 15, утки 3, нейтралы 6 из 24 партий; усы 43-79%</title></circle><text x="872" y="163.0" fill="#8fa2ab" font-size="12">15 из 24</text><text x="200" y="188.0" fill="#dfe8ec" font-size="13" text-anchor="end">Древняя пустыня</text><line x1="511.4" y1="189.0" x2="652.3" y2="189.0" stroke="#e0b465" stroke-width="2" opacity=".45"/><line x1="511.4" y1="185.0" x2="511.4" y2="193.0" stroke="#e0b465" stroke-width="2" opacity=".45"/><line x1="652.3" y1="185.0" x2="652.3" y2="193.0" stroke="#e0b465" stroke-width="2" opacity=".45"/><circle cx="584.3" cy="189.0" r="12.5" fill="#e0b465" fill-opacity=".85" stroke="#e0b465" stroke-opacity=".85"><title>Древняя пустыня: гуси 44, утки 16, нейтралы 16 из 76 партий; усы 47-68%</title></circle><text x="872" y="193.0" fill="#8fa2ab" font-size="12">44 из 76</text><text x="200" y="218.0" fill="#dfe8ec" font-size="13" text-anchor="end">Иглтон спрингс</text><line x1="436.0" y1="219.0" x2="676.7" y2="219.0" stroke="#8fb4e8" stroke-width="2" opacity=".45"/><line x1="436.0" y1="215.0" x2="436.0" y2="223.0" stroke="#8fb4e8" stroke-width="2" opacity=".45"/><line x1="676.7" y1="215.0" x2="676.7" y2="223.0" stroke="#8fb4e8" stroke-width="2" opacity=".45"/><circle cx="560.1" cy="219.0" r="9.0" fill="#8fb4e8" fill-opacity=".85" stroke="#8fb4e8" stroke-opacity=".85"><title>Иглтон спрингс: гуси 13, утки 6, нейтралы 5 из 24 партий; усы 35-72%</title></circle><text x="872" y="223.0" fill="#8fa2ab" font-size="12">13 из 24</text><text x="200" y="248.0" fill="#dfe8ec" font-size="13" text-anchor="end">Маллардон</text><line x1="464.9" y1="249.0" x2="636.7" y2="249.0" stroke="#a99ae0" stroke-width="2" opacity=".45"/><line x1="464.9" y1="245.0" x2="464.9" y2="253.0" stroke="#a99ae0" stroke-width="2" opacity=".45"/><line x1="636.7" y1="245.0" x2="636.7" y2="253.0" stroke="#a99ae0" stroke-width="2" opacity=".45"/><circle cx="552.1" cy="249.0" r="11.1" fill="#a99ae0" fill-opacity=".85" stroke="#a99ae0" stroke-opacity=".85"><title>Маллардон: гуси 27, утки 12, нейтралы 12 из 51 партий; усы 40-66%</title></circle><text x="872" y="253.0" fill="#8fa2ab" font-size="12">27 из 51</text><text x="200" y="278.0" fill="#dfe8ec" font-size="13" text-anchor="end">Гусчэпл</text><line x1="381.3" y1="279.0" x2="617.1" y2="279.0" stroke="#c9a3d8" stroke-width="2" opacity=".45"/><line x1="381.3" y1="275.0" x2="381.3" y2="283.0" stroke="#c9a3d8" stroke-width="2" opacity=".45"/><line x1="617.1" y1="275.0" x2="617.1" y2="283.0" stroke="#c9a3d8" stroke-width="2" opacity=".45"/><circle cx="494.0" cy="279.0" r="9.1" fill="#c9a3d8" fill-opacity=".85" stroke="#c9a3d8" stroke-opacity=".85"><title>Гусчэпл: гуси 11, утки 5, нейтралы 9 из 25 партий; усы 27-63%</title></circle><text x="872" y="283.0" fill="#8fa2ab" font-size="12">11 из 25</text><text x="200" y="308.0" fill="#dfe8ec" font-size="13" text-anchor="end">Карнавал</text><line x1="405.3" y1="309.0" x2="556.8" y2="309.0" stroke="#e2739b" stroke-width="2" opacity=".45"/><line x1="405.3" y1="305.0" x2="405.3" y2="313.0" stroke="#e2739b" stroke-width="2" opacity=".45"/><line x1="556.8" y1="305.0" x2="556.8" y2="313.0" stroke="#e2739b" stroke-width="2" opacity=".45"/><circle cx="478.0" cy="309.0" r="11.9" fill="#e2739b" fill-opacity=".85" stroke="#e2739b" stroke-opacity=".85"><title>Карнавал: гуси 27, утки 22, нейтралы 14 из 65 партий; усы 30-54%</title></circle><text x="872" y="313.0" fill="#8fa2ab" font-size="12">27 из 65</text><text x="200" y="338.0" fill="#8fa2ab" font-size="13" text-anchor="end">Подвал</text><line x1="254.5" y1="339.0" x2="592.0" y2="339.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><line x1="254.5" y1="335.0" x2="254.5" y2="343.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><line x1="592.0" y1="335.0" x2="592.0" y2="343.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><circle cx="370.5" cy="339.0" r="7.1" fill="#8b8f96" fill-opacity=".35" stroke="#8b8f96" stroke-opacity=".35"><title>Подвал: гуси 2, утки 3, нейтралы 3 из 8 партий; усы 7-59%</title></circle><text x="872" y="343.0" fill="#8fa2ab" font-size="12">2 из 8</text></svg></div><p class="small">Усы — насколько число может гулять: сыграй компания ещё столько же партий, доля почти наверняка попала бы куда-то внутрь. Разошлись по-настоящему только Древняя пустыня и Карнавал; остальные усы перекрываются, и порядок между ними ничего не значит.</p>
+<div class="fact"><b>Фанфакт.</b> Больше всего утиных побед собрала карта Карнавал — <b>22</b>, больше чем где-либо ещё.</div>
+</section>
+<section><h2>Как побеждали гуси</h2>
+<p>Победить гуси могут двумя способами, и финальный экран их различает. <b>Выбить всех уток</b> — уток находят и выгоняют на собраниях или убивают; экран пишет просто «Победа Гусь». <b>Успеть по заданиям</b> — уток так и не нашли, но они не успели дожать; экран пишет «Победа по заданиям».</p>
+<p>Ось внизу — между этими двумя способами: чем левее точка, тем чаще партия кончалась тем, что уток выбили, чем правее — тем чаще гуси добегали задания.</p>
+<div class="wrap"><svg viewBox="0 0 1000 388" width="100%" role="img"><line x1="208.0" y1="38" x2="208.0" y2="358" stroke="#2b3b43"/><text x="208.0" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">0%</text><line x1="370.5" y1="38" x2="370.5" y2="358" stroke="#2b3b43"/><text x="370.5" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">25%</text><line x1="533.0" y1="38" x2="533.0" y2="358" stroke="#2b3b43"/><text x="533.0" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">50%</text><line x1="695.5" y1="38" x2="695.5" y2="358" stroke="#2b3b43"/><text x="695.5" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">75%</text><line x1="858.0" y1="38" x2="858.0" y2="358" stroke="#2b3b43"/><text x="858.0" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">100%</text><line x1="424.7" y1="38" x2="424.7" y2="358" stroke="#f6cd83" stroke-width="1.5" stroke-dasharray="4 4" opacity=".8"/><text x="424.7" y="376" fill="#f6cd83" font-size="12" text-anchor="middle">общий уровень 33%</text><text x="208" y="376" fill="#8fa2ab" font-size="12">&#8592; выбили всех уток</text><text x="858" y="376" fill="#8fa2ab" font-size="12" text-anchor="end">успели по заданиям &#8594;</text><text x="200" y="68.0" fill="#8fa2ab" font-size="13" text-anchor="end">Кровавая гавань</text><line x1="342.3" y1="69.0" x2="858.0" y2="69.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><line x1="342.3" y1="65.0" x2="342.3" y2="73.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><line x1="858.0" y1="65.0" x2="858.0" y2="73.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><circle cx="858.0" cy="69.0" r="5.7" fill="#8b8f96" fill-opacity=".35" stroke="#8b8f96" stroke-opacity=".35"><title>Кровавая гавань: выбили уток 0, добежали задания 1, всего побед гусей 1; усы 21-100%</title></circle><text x="872" y="73.0" fill="#8fa2ab" font-size="12">1 из 1</text><text x="200" y="98.0" fill="#dfe8ec" font-size="13" text-anchor="end">Иглтон спрингс</text><line x1="483.4" y1="99.0" x2="775.6" y2="99.0" stroke="#8fb4e8" stroke-width="2" opacity=".45"/><line x1="483.4" y1="95.0" x2="483.4" y2="103.0" stroke="#8fb4e8" stroke-width="2" opacity=".45"/><line x1="775.6" y1="95.0" x2="775.6" y2="103.0" stroke="#8fb4e8" stroke-width="2" opacity=".45"/><circle cx="658.0" cy="99.0" r="8.8" fill="#8fb4e8" fill-opacity=".85" stroke="#8fb4e8" stroke-opacity=".85"><title>Иглтон спрингс: выбили уток 4, добежали задания 9, всего побед гусей 13; усы 42-87%</title></circle><text x="872" y="103.0" fill="#8fa2ab" font-size="12">9 из 13</text><text x="200" y="128.0" fill="#dfe8ec" font-size="13" text-anchor="end">Усадьба Крякв</text><line x1="378.1" y1="129.0" x2="656.7" y2="129.0" stroke="#7fc7a4" stroke-width="2" opacity=".45"/><line x1="378.1" y1="125.0" x2="378.1" y2="133.0" stroke="#7fc7a4" stroke-width="2" opacity=".45"/><line x1="656.7" y1="125.0" x2="656.7" y2="133.0" stroke="#7fc7a4" stroke-width="2" opacity=".45"/><circle cx="513.9" cy="129.0" r="9.5" fill="#7fc7a4" fill-opacity=".85" stroke="#7fc7a4" stroke-opacity=".85"><title>Усадьба Крякв: выбили уток 9, добежали задания 8, всего побед гусей 17; усы 26-69%</title></circle><text x="872" y="133.0" fill="#8fa2ab" font-size="12">8 из 17</text><text x="200" y="158.0" fill="#dfe8ec" font-size="13" text-anchor="end">Древняя пустыня</text><line x1="388.0" y1="159.0" x2="569.3" y2="159.0" stroke="#e0b465" stroke-width="2" opacity=".45"/><line x1="388.0" y1="155.0" x2="388.0" y2="163.0" stroke="#e0b465" stroke-width="2" opacity=".45"/><line x1="569.3" y1="155.0" x2="569.3" y2="163.0" stroke="#e0b465" stroke-width="2" opacity=".45"/><circle cx="473.9" cy="159.0" r="12.5" fill="#e0b465" fill-opacity=".85" stroke="#e0b465" stroke-opacity=".85"><title>Древняя пустыня: выбили уток 26, добежали задания 18, всего побед гусей 44; усы 28-56%</title></circle><text x="872" y="163.0" fill="#8fa2ab" font-size="12">18 из 44</text><text x="200" y="188.0" fill="#dfe8ec" font-size="13" text-anchor="end">Маллардон</text><line x1="311.0" y1="189.0" x2="523.1" y2="189.0" stroke="#a99ae0" stroke-width="2" opacity=".45"/><line x1="311.0" y1="185.0" x2="311.0" y2="193.0" stroke="#a99ae0" stroke-width="2" opacity=".45"/><line x1="523.1" y1="185.0" x2="523.1" y2="193.0" stroke="#a99ae0" stroke-width="2" opacity=".45"/><circle cx="400.6" cy="189.0" r="10.8" fill="#a99ae0" fill-opacity=".85" stroke="#a99ae0" stroke-opacity=".85"><title>Маллардон: выбили уток 19, добежали задания 8, всего побед гусей 27; усы 16-48%</title></circle><text x="872" y="193.0" fill="#8fa2ab" font-size="12">8 из 27</text><text x="200" y="218.0" fill="#dfe8ec" font-size="13" text-anchor="end">Карнавал</text><line x1="311.0" y1="219.0" x2="523.1" y2="219.0" stroke="#e2739b" stroke-width="2" opacity=".45"/><line x1="311.0" y1="215.0" x2="311.0" y2="223.0" stroke="#e2739b" stroke-width="2" opacity=".45"/><line x1="523.1" y1="215.0" x2="523.1" y2="223.0" stroke="#e2739b" stroke-width="2" opacity=".45"/><circle cx="400.6" cy="219.0" r="10.8" fill="#e2739b" fill-opacity=".85" stroke="#e2739b" stroke-opacity=".85"><title>Карнавал: выбили уток 19, добежали задания 8, всего побед гусей 27; усы 16-48%</title></circle><text x="872" y="223.0" fill="#8fa2ab" font-size="12">8 из 27</text><text x="200" y="248.0" fill="#8fa2ab" font-size="13" text-anchor="end">Черный лебедь</text><line x1="231.5" y1="249.0" x2="613.9" y2="249.0" stroke="#6f7bd4" stroke-width="2" opacity=".22"/><line x1="231.5" y1="245.0" x2="231.5" y2="253.0" stroke="#6f7bd4" stroke-width="2" opacity=".22"/><line x1="613.9" y1="245.0" x2="613.9" y2="253.0" stroke="#6f7bd4" stroke-width="2" opacity=".22"/><circle cx="338.0" cy="249.0" r="7.2" fill="#6f7bd4" fill-opacity=".35" stroke="#6f7bd4" stroke-opacity=".35"><title>Черный лебедь: выбили уток 4, добежали задания 1, всего побед гусей 5; усы 4-62%</title></circle><text x="872" y="253.0" fill="#8fa2ab" font-size="12">1 из 5</text><text x="200" y="278.0" fill="#dfe8ec" font-size="13" text-anchor="end">Гусчэпл</text><line x1="218.6" y1="279.0" x2="453.3" y2="279.0" stroke="#c9a3d8" stroke-width="2" opacity=".45"/><line x1="218.6" y1="275.0" x2="218.6" y2="283.0" stroke="#c9a3d8" stroke-width="2" opacity=".45"/><line x1="453.3" y1="275.0" x2="453.3" y2="283.0" stroke="#c9a3d8" stroke-width="2" opacity=".45"/><circle cx="267.1" cy="279.0" r="8.5" fill="#c9a3d8" fill-opacity=".85" stroke="#c9a3d8" stroke-opacity=".85"><title>Гусчэпл: выбили уток 10, добежали задания 1, всего побед гусей 11; усы 2-38%</title></circle><text x="872" y="283.0" fill="#8fa2ab" font-size="12">1 из 11</text><text x="200" y="308.0" fill="#dfe8ec" font-size="13" text-anchor="end">Матушка гусыня</text><line x1="208.0" y1="309.0" x2="340.5" y2="309.0" stroke="#e8a06a" stroke-width="2" opacity=".45"/><line x1="208.0" y1="305.0" x2="208.0" y2="313.0" stroke="#e8a06a" stroke-width="2" opacity=".45"/><line x1="340.5" y1="305.0" x2="340.5" y2="313.0" stroke="#e8a06a" stroke-width="2" opacity=".45"/><circle cx="208.0" cy="309.0" r="9.2" fill="#e8a06a" fill-opacity=".85" stroke="#e8a06a" stroke-opacity=".85"><title>Матушка гусыня: выбили уток 15, добежали задания 0, всего побед гусей 15; усы 0-20%</title></circle><text x="872" y="313.0" fill="#8fa2ab" font-size="12">0 из 15</text><text x="200" y="338.0" fill="#8fa2ab" font-size="13" text-anchor="end">Подвал</text><line x1="208.0" y1="339.0" x2="635.5" y2="339.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><line x1="208.0" y1="335.0" x2="208.0" y2="343.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><line x1="635.5" y1="335.0" x2="635.5" y2="343.0" stroke="#8b8f96" stroke-width="2" opacity=".22"/><circle cx="208.0" cy="339.0" r="6.2" fill="#8b8f96" fill-opacity=".35" stroke="#8b8f96" stroke-opacity=".35"><title>Подвал: выбили уток 2, добежали задания 0, всего побед гусей 2; усы 0-66%</title></circle><text x="872" y="343.0" fill="#8fa2ab" font-size="12">0 из 2</text></svg></div><p class="small">Справа — сколько побед пришло по заданиям из всех побед гусей на карте. Ноль из десяти и семь из девяти выглядят полюсами, но усы у обеих тянутся к середине: за ними меньше десятка партий.</p>
+<div class="fact"><b>Фанфакт.</b> Матушка гусыня: <b>15 побед</b> гусей и ни одной по заданиям. Либо уток там находили всегда, либо заданиями никто так и не занялся.</div>
+</section>
+<section><h2>Кто доживал до финала</h2>
+<p>По вертикали — доля игроков, доживших до финального экрана, по горизонтали — сколько человек было в лобби. Размер точки — число партий. Карты с выборкой меньше десяти партий сюда не попали: одна-две партии растянули бы шкалу и сплющили остальных. Информация к размышлению, а не вывод.</p>
+<div class="wrap"><svg viewBox="0 0 1000 430" width="100%" role="img">
+<line x1="62" y1="368.0" x2="988" y2="368.0" stroke="#2b3b43"/>
+<text x="54" y="372.0" fill="#8fa2ab" font-size="12" text-anchor="end">25%</text>
+<line x1="62" y1="324.3" x2="988" y2="324.3" stroke="#2b3b43"/>
+<text x="54" y="328.3" fill="#8fa2ab" font-size="12" text-anchor="end">30%</text>
+<line x1="62" y1="280.6" x2="988" y2="280.6" stroke="#2b3b43"/>
+<text x="54" y="284.6" fill="#8fa2ab" font-size="12" text-anchor="end">35%</text>
+<line x1="62" y1="236.9" x2="988" y2="236.9" stroke="#2b3b43"/>
+<text x="54" y="240.9" fill="#8fa2ab" font-size="12" text-anchor="end">40%</text>
+<line x1="62" y1="193.1" x2="988" y2="193.1" stroke="#2b3b43"/>
+<text x="54" y="197.1" fill="#8fa2ab" font-size="12" text-anchor="end">45%</text>
+<line x1="62" y1="149.4" x2="988" y2="149.4" stroke="#2b3b43"/>
+<text x="54" y="153.4" fill="#8fa2ab" font-size="12" text-anchor="end">50%</text>
+<line x1="62" y1="105.7" x2="988" y2="105.7" stroke="#2b3b43"/>
+<text x="54" y="109.7" fill="#8fa2ab" font-size="12" text-anchor="end">55%</text>
+<line x1="62" y1="62.0" x2="988" y2="62.0" stroke="#2b3b43"/>
+<text x="54" y="66.0" fill="#8fa2ab" font-size="12" text-anchor="end">60%</text>
+<text x="193.1" y="390" fill="#8fa2ab" font-size="12" text-anchor="middle">11</text>
+<text x="324.3" y="390" fill="#8fa2ab" font-size="12" text-anchor="middle">12</text>
+<text x="455.4" y="390" fill="#8fa2ab" font-size="12" text-anchor="middle">13</text>
+<text x="586.6" y="390" fill="#8fa2ab" font-size="12" text-anchor="middle">14</text>
+<text x="717.7" y="390" fill="#8fa2ab" font-size="12" text-anchor="middle">15</text>
+<text x="848.9" y="390" fill="#8fa2ab" font-size="12" text-anchor="middle">16</text>
+<text x="980.0" y="390" fill="#8fa2ab" font-size="12" text-anchor="middle">17</text>
+<circle cx="658.7" cy="246.8" r="23.0" fill="#e0b465" fill-opacity="0.75" stroke="#e0b465"><title>Древняя пустыня: 76 партий, лобби 15, дожили 39%, то есть 5 человек на партию</title></circle>
+<text x="658.7" y="216.8" fill="#dfe8ec" font-size="12" text-anchor="middle">Древняя пустыня</text>
+<circle cx="829.2" cy="288.5" r="20.1" fill="#a99ae0" fill-opacity="0.75" stroke="#a99ae0"><title>Маллардон: 51 партий, лобби 16, дожили 34%, то есть 5 человек на партию</title></circle>
+<text x="829.2" y="261.4" fill="#dfe8ec" font-size="12" text-anchor="middle">Маллардон</text>
+<circle cx="868.5" cy="310.9" r="16.0" fill="#e8a06a" fill-opacity="0.75" stroke="#e8a06a"><title>Матушка гусыня: 24 партий, лобби 16, дожили 32%, то есть 4.5 человек на партию</title></circle>
+<text x="868.5" y="341.8" fill="#dfe8ec" font-size="12" text-anchor="middle">Матушка гусыня</text>
+<circle cx="698.0" cy="305.7" r="21.8" fill="#e2739b" fill-opacity="0.75" stroke="#e2739b"><title>Карнавал: 65 партий, лобби 15, дожили 32%, то есть 4 человек на партию</title></circle>
+<text x="698.0" y="342.4" fill="#dfe8ec" font-size="12" text-anchor="middle">Карнавал</text>
+<circle cx="193.1" cy="126.6" r="16.2" fill="#7fc7a4" fill-opacity="0.75" stroke="#7fc7a4"><title>Усадьба Крякв: 25 партий, лобби 11, дожили 53%, то есть 6 человек на партию</title></circle>
+<text x="193.1" y="103.4" fill="#dfe8ec" font-size="12" text-anchor="middle">Усадьба Крякв</text>
+<circle cx="737.4" cy="185.5" r="16.0" fill="#8fb4e8" fill-opacity="0.75" stroke="#8fb4e8"><title>Иглтон спрингс: 24 партий, лобби 15, дожили 46%, то есть 6 человек на партию</title></circle>
+<text x="737.4" y="162.5" fill="#dfe8ec" font-size="12" text-anchor="middle">Иглтон спрингс</text>
+<circle cx="776.7" cy="255.4" r="16.2" fill="#c9a3d8" fill-opacity="0.75" stroke="#c9a3d8"><title>Гусчэпл: 25 партий, лобби 15, дожили 38%, то есть 6 человек на партию</title></circle>
+<text x="776.7" y="286.6" fill="#dfe8ec" font-size="12" text-anchor="middle">Гусчэпл</text>
+<text x="62" y="416" fill="#8fa2ab" font-size="12">игроков в лобби (медиана)</text>
+<text x="20" y="166" fill="#8fa2ab" font-size="12" transform="rotate(-90 20 166)">дожили до финала</text>
+</svg></div>
+<p class="small">Не показаны: Подвал, Черный лебедь, Кровавая гавань.</p>
+<div class="fact"><b>Фанфакт.</b> Проценты процентами, а в штуках до финала доживает обычно <b>5 человек</b>. Рекорды в обе стороны: <b>14 из 16</b> (Маллардон, вечер #100) и <b>1 из 12</b> (Усадьба Крякв, вечер #95).</div>
+</section>
+<section><h2>Сколько шла партия</h2>
+<p>Считается по расстоянию между финальными кадрами соседних партий, поэтому это <b>оценка сверху</b>: внутрь попадает лобби и раздача ролей. Полоса — от самой короткой партии до самой длинной, метка — медиана.</p>
+<div class="row"><div class="name">Усадьба Крякв<br><span class="thin">25 партий</span></div><div style="position:relative;height:22px"><div style="position:absolute;left:9.27%;width:68.29%;top:7px;height:8px;border-radius:8px;background:#7fc7a4;opacity:.45"></div><div style="position:absolute;left:38.13%;top:1px;width:3px;height:20px;background:#7fc7a4" title="медиана 10:17"></div></div><div class="num">10:17</div></div>
+<div class="row"><div class="name">Древняя пустыня<br><span class="thin">67 партий</span></div><div style="position:relative;height:22px"><div style="position:absolute;left:10.01%;width:72.50%;top:7px;height:8px;border-radius:8px;background:#e0b465;opacity:.45"></div><div style="position:absolute;left:44.38%;top:1px;width:3px;height:20px;background:#e0b465" title="медиана 11:58"></div></div><div class="num">11:58</div></div>
+<div class="row"><div class="name">Карнавал<br><span class="thin">57 партий</span></div><div style="position:relative;height:22px"><div style="position:absolute;left:17.31%;width:63.16%;top:7px;height:8px;border-radius:8px;background:#e2739b;opacity:.45"></div><div style="position:absolute;left:47.10%;top:1px;width:3px;height:20px;background:#e2739b" title="медиана 12:42"></div></div><div class="num">12:42</div></div>
+<div class="row"><div class="name">Маллардон<br><span class="thin">43 партии</span></div><div style="position:relative;height:22px"><div style="position:absolute;left:21.45%;width:78.55%;top:7px;height:8px;border-radius:8px;background:#a99ae0;opacity:.45"></div><div style="position:absolute;left:52.90%;top:1px;width:3px;height:20px;background:#a99ae0" title="медиана 14:16"></div></div><div class="num">14:16</div></div>
+<div class="row weak"><div class="name">Подвал<br><span class="thin">8 партий</span></div><div style="position:relative;height:22px"><div style="position:absolute;left:32.88%;width:42.03%;top:7px;height:8px;border-radius:8px;background:#8b8f96;opacity:.45"></div><div style="position:absolute;left:55.16%;top:1px;width:3px;height:20px;background:#8b8f96" title="медиана 14:52"></div></div><div class="num">14:52</div></div>
+<div class="row"><div class="name">Иглтон спрингс<br><span class="thin">20 партий</span></div><div style="position:relative;height:22px"><div style="position:absolute;left:11.06%;width:78.12%;top:7px;height:8px;border-radius:8px;background:#8fb4e8;opacity:.45"></div><div style="position:absolute;left:56.09%;top:1px;width:3px;height:20px;background:#8fb4e8" title="медиана 15:07"></div></div><div class="num">15:07</div></div>
+<div class="row"><div class="name">Гусчэпл<br><span class="thin">21 партия</span></div><div style="position:relative;height:22px"><div style="position:absolute;left:32.82%;width:50.80%;top:7px;height:8px;border-radius:8px;background:#c9a3d8;opacity:.45"></div><div style="position:absolute;left:58.84%;top:1px;width:3px;height:20px;background:#c9a3d8" title="медиана 15:52"></div></div><div class="num">15:52</div></div>
+<div class="row"><div class="name">Матушка гусыня<br><span class="thin">19 партий</span></div><div style="position:relative;height:22px"><div style="position:absolute;left:24.72%;width:66.25%;top:7px;height:8px;border-radius:8px;background:#e8a06a;opacity:.45"></div><div style="position:absolute;left:63.54%;top:1px;width:3px;height:20px;background:#e8a06a" title="медиана 17:08"></div></div><div class="num">17:08</div></div>
+<div class="row weak"><div class="name">Черный лебедь<br><span class="thin">5 партий</span></div><div style="position:relative;height:22px"><div style="position:absolute;left:52.84%;width:31.58%;top:7px;height:8px;border-radius:8px;background:#6f7bd4;opacity:.45"></div><div style="position:absolute;left:67.92%;top:1px;width:3px;height:20px;background:#6f7bd4" title="медиана 18:19"></div></div><div class="num">18:19</div></div>
+<div class="fact"><b>Фанфакт.</b> Разброс — больше чем в десять раз: самая быстрая партия уложилась в <b>2:30</b> (Усадьба Крякв, вечер #95), самая долгая тянулась <b>26:58</b> (Маллардон, вечер #97).</div>
+</section>
+<section><h2>Нейтралы: это про роли, а не про карты</h2>
+<p>Разложить нейтралов ещё и по картам не получается: Птицу Додо за все вечера раздали чуть больше двух сотен раз, а карт десять — в клетке остаются единицы, и любая доля там случайна. Поэтому здесь одна ось на всех: сколько раз роль выдали и сколько раз она победила.</p>
+<div class="wrap"><svg viewBox="0 0 1000 268" width="100%" role="img"><line x1="208.0" y1="38" x2="208.0" y2="238" stroke="#2b3b43"/><text x="208.0" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">0%</text><line x1="370.5" y1="38" x2="370.5" y2="238" stroke="#2b3b43"/><text x="370.5" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">5%</text><line x1="533.0" y1="38" x2="533.0" y2="238" stroke="#2b3b43"/><text x="533.0" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">10%</text><line x1="695.5" y1="38" x2="695.5" y2="238" stroke="#2b3b43"/><text x="695.5" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">15%</text><line x1="858.0" y1="38" x2="858.0" y2="238" stroke="#2b3b43"/><text x="858.0" y="30" fill="#8fa2ab" font-size="12" text-anchor="middle">20%</text><line x1="479.5" y1="38" x2="479.5" y2="238" stroke="#f6cd83" stroke-width="1.5" stroke-dasharray="4 4" opacity=".8"/><text x="479.5" y="256" fill="#f6cd83" font-size="12" text-anchor="middle">нейтралы в среднем 8%</text><text x="200" y="68.0" fill="#dfe8ec" font-size="13" text-anchor="end">Птица Додо</text><line x1="472.8" y1="69.0" x2="719.0" y2="69.0" stroke="#f6cd83" stroke-width="2" opacity=".45"/><line x1="472.8" y1="65.0" x2="472.8" y2="73.0" stroke="#f6cd83" stroke-width="2" opacity=".45"/><line x1="719.0" y1="65.0" x2="719.0" y2="73.0" stroke="#f6cd83" stroke-width="2" opacity=".45"/><circle cx="578.4" cy="69.0" r="12.5" fill="#f6cd83" fill-opacity=".85" stroke="#f6cd83" stroke-opacity=".85"><title>Птица Додо: побед 31 из 272 выдач; усы 8-16%</title></circle><text x="872" y="73.0" fill="#8fa2ab" font-size="12">31 из 272</text><text x="200" y="98.0" fill="#dfe8ec" font-size="13" text-anchor="end">Голубь</text><line x1="407.5" y1="99.0" x2="632.9" y2="99.0" stroke="#e8a06a" stroke-width="2" opacity=".45"/><line x1="407.5" y1="95.0" x2="407.5" y2="103.0" stroke="#e8a06a" stroke-width="2" opacity=".45"/><line x1="632.9" y1="95.0" x2="632.9" y2="103.0" stroke="#e8a06a" stroke-width="2" opacity=".45"/><circle cx="501.2" cy="99.0" r="12.4" fill="#e8a06a" fill-opacity=".85" stroke="#e8a06a" stroke-opacity=".85"><title>Голубь: побед 24 из 266 выдач; усы 6-13%</title></circle><text x="872" y="103.0" fill="#8fa2ab" font-size="12">24 из 266</text><text x="200" y="128.0" fill="#dfe8ec" font-size="13" text-anchor="end">Сорока</text><line x1="335.7" y1="129.0" x2="768.2" y2="129.0" stroke="#8fb4e8" stroke-width="2" opacity=".45"/><line x1="335.7" y1="125.0" x2="335.7" y2="133.0" stroke="#8fb4e8" stroke-width="2" opacity=".45"/><line x1="768.2" y1="125.0" x2="768.2" y2="133.0" stroke="#8fb4e8" stroke-width="2" opacity=".45"/><circle cx="482.6" cy="129.0" r="8.6" fill="#8fb4e8" fill-opacity=".85" stroke="#8fb4e8" stroke-opacity=".85"><title>Сорока: побед 6 из 71 выдач; усы 4-17%</title></circle><text x="872" y="133.0" fill="#8fa2ab" font-size="12">6 из 71</text><text x="200" y="158.0" fill="#dfe8ec" font-size="13" text-anchor="end">Пеликан</text><line x1="300.2" y1="159.0" x2="621.4" y2="159.0" stroke="#7fc7a4" stroke-width="2" opacity=".45"/><line x1="300.2" y1="155.0" x2="300.2" y2="163.0" stroke="#7fc7a4" stroke-width="2" opacity=".45"/><line x1="621.4" y1="155.0" x2="621.4" y2="163.0" stroke="#7fc7a4" stroke-width="2" opacity=".45"/><circle cx="407.0" cy="159.0" r="9.3" fill="#7fc7a4" fill-opacity=".85" stroke="#7fc7a4" stroke-opacity=".85"><title>Пеликан: побед 6 из 98 выдач; усы 3-13%</title></circle><text x="872" y="163.0" fill="#8fa2ab" font-size="12">6 из 98</text><text x="200" y="188.0" fill="#dfe8ec" font-size="13" text-anchor="end">Ворон</text><line x1="267.8" y1="189.0" x2="682.7" y2="189.0" stroke="#a99ae0" stroke-width="2" opacity=".45"/><line x1="267.8" y1="185.0" x2="267.8" y2="193.0" stroke="#a99ae0" stroke-width="2" opacity=".45"/><line x1="682.7" y1="185.0" x2="682.7" y2="193.0" stroke="#a99ae0" stroke-width="2" opacity=".45"/><circle cx="382.1" cy="189.0" r="8.1" fill="#a99ae0" fill-opacity=".85" stroke="#a99ae0" stroke-opacity=".85"><title>Ворон: побед 3 из 56 выдач; усы 2-15%</title></circle><text x="872" y="193.0" fill="#8fa2ab" font-size="12">3 из 56</text><text x="200" y="218.0" fill="#dfe8ec" font-size="13" text-anchor="end">Сокол</text><line x1="238.0" y1="219.0" x2="456.5" y2="219.0" stroke="#8fd4e8" stroke-width="2" opacity=".45"/><line x1="238.0" y1="215.0" x2="238.0" y2="223.0" stroke="#8fd4e8" stroke-width="2" opacity=".45"/><line x1="456.5" y1="215.0" x2="456.5" y2="223.0" stroke="#8fd4e8" stroke-width="2" opacity=".45"/><circle cx="295.8" cy="219.0" r="9.6" fill="#8fd4e8" fill-opacity=".85" stroke="#8fd4e8" stroke-opacity=".85"><title>Сокол: побед 3 из 111 выдач; усы 1-8%</title></circle><text x="872" y="223.0" fill="#8fa2ab" font-size="12">3 из 111</text></svg></div><p class="small">Порог тот же: у ролей, выданных меньше десяти раз, доля не значит ничего, и они показаны блёкло.</p>
+<div class="fact"><b>Фанфакт.</b> С тех пор как появилась Сорока — с вечера <b>#99</b> — почти в каждой четвёртой партии все три нейтрала были неубивающими: Сорока, Голубь и Птица Додо. Это <b>25 из 102 партий</b> (24,5%), или 35,2% всех партий с Сорокой (25 из 71).</div>
+</section>
+</main>
+<script>
+(function () {
+  var pop = document.createElement("div");
+  pop.id = "pop";
+  pop.hidden = true;
+  document.body.appendChild(pop);
+  document.addEventListener("click", function (event) {
+    var tile = event.target.closest(".tile");
+    if (!tile) { pop.hidden = true; return; }
+    pop.innerHTML = tile.dataset.info;
+    pop.hidden = false;
+    var box = tile.getBoundingClientRect();
+    var left = box.left + box.width / 2 - pop.offsetWidth / 2;
+    left = Math.min(Math.max(8, left), innerWidth - pop.offsetWidth - 8);
+    var top = box.top - pop.offsetHeight - 8;
+    pop.style.left = left + "px";
+    pop.style.top = (top < 8 ? box.bottom + 8 : top) + "px";
+  });
+})();
+</script>
