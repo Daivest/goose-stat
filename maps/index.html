@@ -1,5 +1,17 @@
 <!doctype html><html lang="ru"><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script>
+if (location.hostname === 'daivest.github.io' && location.pathname.startsWith('/goose-stat/')) {
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  const analyticsScript = document.createElement('script');
+  analyticsScript.async = true;
+  analyticsScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-S3JV9HFRXF';
+  document.head.appendChild(analyticsScript);
+  gtag('js', new Date());
+  gtag('config', 'G-S3JV9HFRXF');
+}
+</script>
 <title>Карты — разрезы</title><style>
 :root{color-scheme:dark;--bg:#101a20;--panel:#1a2931;--line:#3a4a51;--muted:#adc0c8;--mint:#b6ebba;--gold:#f6cd83}
 *{box-sizing:border-box}
