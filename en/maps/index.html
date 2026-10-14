@@ -58,6 +58,12 @@ th{color:var(--muted);font-weight:400}
 .axis span:first-child{transform:none}
 .tile{cursor:pointer;transition:opacity .15s}
 .tile.dim{opacity:.12}
+.modes{display:flex;gap:8px;margin:14px 0 6px}
+.modes button{font:inherit;font-size:14px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:4px 13px;cursor:pointer}
+.modes button[aria-pressed=true]{color:#f2f5ed;border-color:var(--gold)}
+.volrows .bar{transition:width .45s ease}
+.volrows .bar span{display:flex;align-items:center;padding-left:6px;font-size:11px;color:#101a20;white-space:nowrap;overflow:hidden;transition:width .45s ease}
+@media (prefers-reduced-motion:reduce){.volrows .bar,.volrows .bar span{transition:none}}
 .row[data-info]{cursor:pointer}
 .maptiles .evening{grid-template-columns:104px 1fr;align-items:center;margin:3px 0}
 .maptiles .evening b{font-size:14px;white-space:nowrap}
@@ -538,17 +544,37 @@ th{color:var(--muted);font-weight:400}
 <div class="fact"><b>Fun fact.</b> Longest sitting: <b>13 games in a row</b> on one map (Ancient Sands, evening #99). And in a whole evening the group changes map 4 times at most: they settle in and play.</div>
 </section>
 <section><h2>How much we played on each</h2>
-<p>This is where to start: the three most played maps took <b>61%</b> of all games, while the three rarest together got 22 games. From here on, this number decides which row to trust. The colours inside a bar show how those games ended.</p>
-<div class="row" data-info="&lt;b&gt;Ancient Sands&lt;/b&gt;&lt;br&gt;98 games: geese 53, ducks 22, neutrals 23"><div class="name">Ancient Sands</div><div class="bar" style="width:100.00%"><span style="width:54.0816%;background:#b6ebba" title="geese: 53"></span><span style="width:22.4490%;background:#f08a8a" title="ducks: 22"></span><span style="width:23.4694%;background:#f6cd83" title="neutrals: 23"></span></div><div class="num">98 games</div></div>
-<div class="row" data-info="&lt;b&gt;The Carnival&lt;/b&gt;&lt;br&gt;79 games: geese 34, ducks 26, neutrals 16, lovers 3"><div class="name">The Carnival</div><div class="bar" style="width:80.61%"><span style="width:43.0380%;background:#b6ebba" title="geese: 34"></span><span style="width:32.9114%;background:#f08a8a" title="ducks: 26"></span><span style="width:20.2532%;background:#f6cd83" title="neutrals: 16"></span><span style="width:3.7975%;background:#b39cf0" title="lovers: 3"></span></div><div class="num">79 games</div></div>
-<div class="row" data-info="&lt;b&gt;Mallardon&lt;/b&gt;&lt;br&gt;65 games: geese 33, ducks 18, neutrals 13, lovers 1"><div class="name">Mallardon</div><div class="bar" style="width:66.33%"><span style="width:50.7692%;background:#b6ebba" title="geese: 33"></span><span style="width:27.6923%;background:#f08a8a" title="ducks: 18"></span><span style="width:20.0000%;background:#f6cd83" title="neutrals: 13"></span><span style="width:1.5385%;background:#b39cf0" title="lovers: 1"></span></div><div class="num">65 games</div></div>
-<div class="row" data-info="&lt;b&gt;Goosechapel&lt;/b&gt;&lt;br&gt;35 games: geese 14, ducks 7, neutrals 14"><div class="name">Goosechapel</div><div class="bar" style="width:35.71%"><span style="width:40.0000%;background:#b6ebba" title="geese: 14"></span><span style="width:20.0000%;background:#f08a8a" title="ducks: 7"></span><span style="width:40.0000%;background:#f6cd83" title="neutrals: 14"></span></div><div class="num">35 games</div></div>
-<div class="row" data-info="&lt;b&gt;S.S. Mother Goose&lt;/b&gt;&lt;br&gt;33 games: geese 20, ducks 6, neutrals 7"><div class="name">S.S. Mother Goose</div><div class="bar" style="width:33.67%"><span style="width:60.6061%;background:#b6ebba" title="geese: 20"></span><span style="width:18.1818%;background:#f08a8a" title="ducks: 6"></span><span style="width:21.2121%;background:#f6cd83" title="neutrals: 7"></span></div><div class="num">33 games</div></div>
-<div class="row" data-info="&lt;b&gt;Mallard Manor&lt;/b&gt;&lt;br&gt;33 games: geese 20, ducks 5, neutrals 8"><div class="name">Mallard Manor</div><div class="bar" style="width:33.67%"><span style="width:60.6061%;background:#b6ebba" title="geese: 20"></span><span style="width:15.1515%;background:#f08a8a" title="ducks: 5"></span><span style="width:24.2424%;background:#f6cd83" title="neutrals: 8"></span></div><div class="num">33 games</div></div>
-<div class="row" data-info="&lt;b&gt;Eagleton Springs&lt;/b&gt;&lt;br&gt;31 games: geese 18, ducks 7, neutrals 6"><div class="name">Eagleton Springs</div><div class="bar" style="width:31.63%"><span style="width:58.0645%;background:#b6ebba" title="geese: 18"></span><span style="width:22.5806%;background:#f08a8a" title="ducks: 7"></span><span style="width:19.3548%;background:#f6cd83" title="neutrals: 6"></span></div><div class="num">31 games</div></div>
-<div class="row" data-info="&lt;b&gt;Black Swan&lt;/b&gt;&lt;br&gt;13 games: geese 9, ducks 2, neutrals 2"><div class="name">Black Swan</div><div class="bar" style="width:13.27%"><span style="width:69.2308%;background:#b6ebba" title="geese: 9"></span><span style="width:15.3846%;background:#f08a8a" title="ducks: 2"></span><span style="width:15.3846%;background:#f6cd83" title="neutrals: 2"></span></div><div class="num">13 games</div></div>
-<div class="row weak" data-info="&lt;b&gt;The Basement&lt;/b&gt;&lt;br&gt;8 games: geese 2, ducks 3, neutrals 3"><div class="name">The Basement</div><div class="bar" style="width:8.16%"><span style="width:25.0000%;background:#b6ebba" title="geese: 2"></span><span style="width:37.5000%;background:#f08a8a" title="ducks: 3"></span><span style="width:37.5000%;background:#f6cd83" title="neutrals: 3"></span></div><div class="num">8 games</div></div>
-<div class="row weak" data-info="&lt;b&gt;Bloodhaven&lt;/b&gt;&lt;br&gt;1 game: geese 1"><div class="name">Bloodhaven</div><div class="bar" style="width:1.02%"><span style="width:100.0000%;background:#b6ebba" title="geese: 1"></span></div><div class="num">1 game</div></div>
+<p>This is where to start: the three most played maps took <b>61%</b> of all games, while the three rarest together got 22 games. From here on, this number decides which row to trust. The colours inside a bar show how those games ended. The switch stretches every bar to 100%, so the line-ups compare instead of the volumes.</p>
+<div class="modes" role="group" aria-label="Mode"><button type="button" data-mode="abs" aria-pressed="true">in games</button><button type="button" data-mode="share" aria-pressed="false">in shares</button></div><div class="volrows">
+<div class="row" data-info="&lt;b&gt;Ancient Sands&lt;/b&gt;&lt;br&gt;98 games: geese 53, ducks 22, neutrals 23"><div class="name">Ancient Sands</div><div class="bar" data-abs="100.00" style="width:100.00%"><span style="width:54.0816%;background:#b6ebba" title="geese: 53"></span><span style="width:22.4490%;background:#f08a8a" title="ducks: 22"></span><span style="width:23.4694%;background:#f6cd83" title="neutrals: 23"></span></div><div class="num">98 games</div></div>
+<div class="row" data-info="&lt;b&gt;The Carnival&lt;/b&gt;&lt;br&gt;79 games: geese 34, ducks 26, neutrals 16, lovers 3"><div class="name">The Carnival</div><div class="bar" data-abs="80.61" style="width:80.61%"><span style="width:43.0380%;background:#b6ebba" title="geese: 34"></span><span style="width:32.9114%;background:#f08a8a" title="ducks: 26"></span><span style="width:20.2532%;background:#f6cd83" title="neutrals: 16"></span><span style="width:3.7975%;background:#b39cf0" title="lovers: 3"></span></div><div class="num">79 games</div></div>
+<div class="row" data-info="&lt;b&gt;Mallardon&lt;/b&gt;&lt;br&gt;65 games: geese 33, ducks 18, neutrals 13, lovers 1"><div class="name">Mallardon</div><div class="bar" data-abs="66.33" style="width:66.33%"><span style="width:50.7692%;background:#b6ebba" title="geese: 33"></span><span style="width:27.6923%;background:#f08a8a" title="ducks: 18"></span><span style="width:20.0000%;background:#f6cd83" title="neutrals: 13"></span><span style="width:1.5385%;background:#b39cf0" title="lovers: 1"></span></div><div class="num">65 games</div></div>
+<div class="row" data-info="&lt;b&gt;Goosechapel&lt;/b&gt;&lt;br&gt;35 games: geese 14, ducks 7, neutrals 14"><div class="name">Goosechapel</div><div class="bar" data-abs="35.71" style="width:35.71%"><span style="width:40.0000%;background:#b6ebba" title="geese: 14"></span><span style="width:20.0000%;background:#f08a8a" title="ducks: 7"></span><span style="width:40.0000%;background:#f6cd83" title="neutrals: 14"></span></div><div class="num">35 games</div></div>
+<div class="row" data-info="&lt;b&gt;S.S. Mother Goose&lt;/b&gt;&lt;br&gt;33 games: geese 20, ducks 6, neutrals 7"><div class="name">S.S. Mother Goose</div><div class="bar" data-abs="33.67" style="width:33.67%"><span style="width:60.6061%;background:#b6ebba" title="geese: 20"></span><span style="width:18.1818%;background:#f08a8a" title="ducks: 6"></span><span style="width:21.2121%;background:#f6cd83" title="neutrals: 7"></span></div><div class="num">33 games</div></div>
+<div class="row" data-info="&lt;b&gt;Mallard Manor&lt;/b&gt;&lt;br&gt;33 games: geese 20, ducks 5, neutrals 8"><div class="name">Mallard Manor</div><div class="bar" data-abs="33.67" style="width:33.67%"><span style="width:60.6061%;background:#b6ebba" title="geese: 20"></span><span style="width:15.1515%;background:#f08a8a" title="ducks: 5"></span><span style="width:24.2424%;background:#f6cd83" title="neutrals: 8"></span></div><div class="num">33 games</div></div>
+<div class="row" data-info="&lt;b&gt;Eagleton Springs&lt;/b&gt;&lt;br&gt;31 games: geese 18, ducks 7, neutrals 6"><div class="name">Eagleton Springs</div><div class="bar" data-abs="31.63" style="width:31.63%"><span style="width:58.0645%;background:#b6ebba" title="geese: 18"></span><span style="width:22.5806%;background:#f08a8a" title="ducks: 7"></span><span style="width:19.3548%;background:#f6cd83" title="neutrals: 6"></span></div><div class="num">31 games</div></div>
+<div class="row" data-info="&lt;b&gt;Black Swan&lt;/b&gt;&lt;br&gt;13 games: geese 9, ducks 2, neutrals 2"><div class="name">Black Swan</div><div class="bar" data-abs="13.27" style="width:13.27%"><span style="width:69.2308%;background:#b6ebba" title="geese: 9"></span><span style="width:15.3846%;background:#f08a8a" title="ducks: 2"></span><span style="width:15.3846%;background:#f6cd83" title="neutrals: 2"></span></div><div class="num">13 games</div></div>
+<div class="row weak" data-info="&lt;b&gt;The Basement&lt;/b&gt;&lt;br&gt;8 games: geese 2, ducks 3, neutrals 3"><div class="name">The Basement</div><div class="bar" data-abs="8.16" style="width:8.16%"><span style="width:25.0000%;background:#b6ebba" title="geese: 2"></span><span style="width:37.5000%;background:#f08a8a" title="ducks: 3"></span><span style="width:37.5000%;background:#f6cd83" title="neutrals: 3"></span></div><div class="num">8 games</div></div>
+<div class="row weak" data-info="&lt;b&gt;Bloodhaven&lt;/b&gt;&lt;br&gt;1 game: geese 1"><div class="name">Bloodhaven</div><div class="bar" data-abs="1.02" style="width:1.02%"><span style="width:100.0000%;background:#b6ebba" title="geese: 1"></span></div><div class="num">1 game</div></div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector(".volrows"), modes = document.querySelector(".modes");
+  modes.addEventListener("click", function (event) {
+    var button = event.target.closest("button");
+    if (!button) return;
+    var share = button.dataset.mode === "share";
+    modes.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b === button)); });
+    box.querySelectorAll(".bar").forEach(function (bar) {
+      bar.style.width = share ? "100%" : bar.dataset.abs + "%";
+      bar.querySelectorAll("span").forEach(function (part) {
+        var width = parseFloat(part.style.width);
+        part.textContent = share && width > 12 ? Math.round(width) + "%" : "";
+      });
+    });
+  });
+})();
+</script>
 <div class="legend">
 <span><b style="background:#b6ebba"></b>geese</span>
 <span><b style="background:#f08a8a"></b>ducks</span>

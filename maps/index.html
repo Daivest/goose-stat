@@ -58,6 +58,12 @@ th{color:var(--muted);font-weight:400}
 .axis span:first-child{transform:none}
 .tile{cursor:pointer;transition:opacity .15s}
 .tile.dim{opacity:.12}
+.modes{display:flex;gap:8px;margin:14px 0 6px}
+.modes button{font:inherit;font-size:14px;color:var(--muted);background:none;border:1px solid var(--line);border-radius:999px;padding:4px 13px;cursor:pointer}
+.modes button[aria-pressed=true]{color:#f2f5ed;border-color:var(--gold)}
+.volrows .bar{transition:width .45s ease}
+.volrows .bar span{display:flex;align-items:center;padding-left:6px;font-size:11px;color:#101a20;white-space:nowrap;overflow:hidden;transition:width .45s ease}
+@media (prefers-reduced-motion:reduce){.volrows .bar,.volrows .bar span{transition:none}}
 .row[data-info]{cursor:pointer}
 .maptiles .evening{grid-template-columns:104px 1fr;align-items:center;margin:3px 0}
 .maptiles .evening b{font-size:14px;white-space:nowrap}
@@ -538,17 +544,37 @@ th{color:var(--muted);font-weight:400}
 <div class="fact"><b>Фанфакт.</b> Рекорд усидчивости — <b>13 партий подряд</b> на одной карте (Древняя пустыня, вечер #99). А за целый вечер компания меняет карту самое большее 4 раза: сели и играют.</div>
 </section>
 <section><h2>Сколько на какой сыграли</h2>
-<p>С этого стоит начинать: на три самые частые карты пришлось <b>61%</b> партий, а три самые редкие вместе набрали 22 партии. Дальше это число решает, какой строке верить. Цвет внутри полосы — чем эти партии кончились.</p>
-<div class="row" data-info="&lt;b&gt;Древняя пустыня&lt;/b&gt;&lt;br&gt;98 партий: гуси 53, утки 22, нейтралы 23"><div class="name">Древняя пустыня</div><div class="bar" style="width:100.00%"><span style="width:54.0816%;background:#b6ebba" title="гуси: 53"></span><span style="width:22.4490%;background:#f08a8a" title="утки: 22"></span><span style="width:23.4694%;background:#f6cd83" title="нейтралы: 23"></span></div><div class="num">98 партий</div></div>
-<div class="row" data-info="&lt;b&gt;Карнавал&lt;/b&gt;&lt;br&gt;79 партий: гуси 34, утки 26, нейтралы 16, любовники 3"><div class="name">Карнавал</div><div class="bar" style="width:80.61%"><span style="width:43.0380%;background:#b6ebba" title="гуси: 34"></span><span style="width:32.9114%;background:#f08a8a" title="утки: 26"></span><span style="width:20.2532%;background:#f6cd83" title="нейтралы: 16"></span><span style="width:3.7975%;background:#b39cf0" title="любовники: 3"></span></div><div class="num">79 партий</div></div>
-<div class="row" data-info="&lt;b&gt;Маллардон&lt;/b&gt;&lt;br&gt;65 партий: гуси 33, утки 18, нейтралы 13, любовники 1"><div class="name">Маллардон</div><div class="bar" style="width:66.33%"><span style="width:50.7692%;background:#b6ebba" title="гуси: 33"></span><span style="width:27.6923%;background:#f08a8a" title="утки: 18"></span><span style="width:20.0000%;background:#f6cd83" title="нейтралы: 13"></span><span style="width:1.5385%;background:#b39cf0" title="любовники: 1"></span></div><div class="num">65 партий</div></div>
-<div class="row" data-info="&lt;b&gt;Гусчэпл&lt;/b&gt;&lt;br&gt;35 партий: гуси 14, утки 7, нейтралы 14"><div class="name">Гусчэпл</div><div class="bar" style="width:35.71%"><span style="width:40.0000%;background:#b6ebba" title="гуси: 14"></span><span style="width:20.0000%;background:#f08a8a" title="утки: 7"></span><span style="width:40.0000%;background:#f6cd83" title="нейтралы: 14"></span></div><div class="num">35 партий</div></div>
-<div class="row" data-info="&lt;b&gt;Матушка гусыня&lt;/b&gt;&lt;br&gt;33 партии: гуси 20, утки 6, нейтралы 7"><div class="name">Матушка гусыня</div><div class="bar" style="width:33.67%"><span style="width:60.6061%;background:#b6ebba" title="гуси: 20"></span><span style="width:18.1818%;background:#f08a8a" title="утки: 6"></span><span style="width:21.2121%;background:#f6cd83" title="нейтралы: 7"></span></div><div class="num">33 партии</div></div>
-<div class="row" data-info="&lt;b&gt;Усадьба Крякв&lt;/b&gt;&lt;br&gt;33 партии: гуси 20, утки 5, нейтралы 8"><div class="name">Усадьба Крякв</div><div class="bar" style="width:33.67%"><span style="width:60.6061%;background:#b6ebba" title="гуси: 20"></span><span style="width:15.1515%;background:#f08a8a" title="утки: 5"></span><span style="width:24.2424%;background:#f6cd83" title="нейтралы: 8"></span></div><div class="num">33 партии</div></div>
-<div class="row" data-info="&lt;b&gt;Иглтон спрингс&lt;/b&gt;&lt;br&gt;31 партия: гуси 18, утки 7, нейтралы 6"><div class="name">Иглтон спрингс</div><div class="bar" style="width:31.63%"><span style="width:58.0645%;background:#b6ebba" title="гуси: 18"></span><span style="width:22.5806%;background:#f08a8a" title="утки: 7"></span><span style="width:19.3548%;background:#f6cd83" title="нейтралы: 6"></span></div><div class="num">31 партия</div></div>
-<div class="row" data-info="&lt;b&gt;Черный лебедь&lt;/b&gt;&lt;br&gt;13 партий: гуси 9, утки 2, нейтралы 2"><div class="name">Черный лебедь</div><div class="bar" style="width:13.27%"><span style="width:69.2308%;background:#b6ebba" title="гуси: 9"></span><span style="width:15.3846%;background:#f08a8a" title="утки: 2"></span><span style="width:15.3846%;background:#f6cd83" title="нейтралы: 2"></span></div><div class="num">13 партий</div></div>
-<div class="row weak" data-info="&lt;b&gt;Подвал&lt;/b&gt;&lt;br&gt;8 партий: гуси 2, утки 3, нейтралы 3"><div class="name">Подвал</div><div class="bar" style="width:8.16%"><span style="width:25.0000%;background:#b6ebba" title="гуси: 2"></span><span style="width:37.5000%;background:#f08a8a" title="утки: 3"></span><span style="width:37.5000%;background:#f6cd83" title="нейтралы: 3"></span></div><div class="num">8 партий</div></div>
-<div class="row weak" data-info="&lt;b&gt;Кровавая гавань&lt;/b&gt;&lt;br&gt;1 партия: гуси 1"><div class="name">Кровавая гавань</div><div class="bar" style="width:1.02%"><span style="width:100.0000%;background:#b6ebba" title="гуси: 1"></span></div><div class="num">1 партия</div></div>
+<p>С этого стоит начинать: на три самые частые карты пришлось <b>61%</b> партий, а три самые редкие вместе набрали 22 партии. Дальше это число решает, какой строке верить. Цвет внутри полосы — чем эти партии кончились. Переключатель растягивает все полосы до 100%: так сравниваются составы, а не объёмы.</p>
+<div class="modes" role="group" aria-label="Режим"><button type="button" data-mode="abs" aria-pressed="true">в партиях</button><button type="button" data-mode="share" aria-pressed="false">в долях</button></div><div class="volrows">
+<div class="row" data-info="&lt;b&gt;Древняя пустыня&lt;/b&gt;&lt;br&gt;98 партий: гуси 53, утки 22, нейтралы 23"><div class="name">Древняя пустыня</div><div class="bar" data-abs="100.00" style="width:100.00%"><span style="width:54.0816%;background:#b6ebba" title="гуси: 53"></span><span style="width:22.4490%;background:#f08a8a" title="утки: 22"></span><span style="width:23.4694%;background:#f6cd83" title="нейтралы: 23"></span></div><div class="num">98 партий</div></div>
+<div class="row" data-info="&lt;b&gt;Карнавал&lt;/b&gt;&lt;br&gt;79 партий: гуси 34, утки 26, нейтралы 16, любовники 3"><div class="name">Карнавал</div><div class="bar" data-abs="80.61" style="width:80.61%"><span style="width:43.0380%;background:#b6ebba" title="гуси: 34"></span><span style="width:32.9114%;background:#f08a8a" title="утки: 26"></span><span style="width:20.2532%;background:#f6cd83" title="нейтралы: 16"></span><span style="width:3.7975%;background:#b39cf0" title="любовники: 3"></span></div><div class="num">79 партий</div></div>
+<div class="row" data-info="&lt;b&gt;Маллардон&lt;/b&gt;&lt;br&gt;65 партий: гуси 33, утки 18, нейтралы 13, любовники 1"><div class="name">Маллардон</div><div class="bar" data-abs="66.33" style="width:66.33%"><span style="width:50.7692%;background:#b6ebba" title="гуси: 33"></span><span style="width:27.6923%;background:#f08a8a" title="утки: 18"></span><span style="width:20.0000%;background:#f6cd83" title="нейтралы: 13"></span><span style="width:1.5385%;background:#b39cf0" title="любовники: 1"></span></div><div class="num">65 партий</div></div>
+<div class="row" data-info="&lt;b&gt;Гусчэпл&lt;/b&gt;&lt;br&gt;35 партий: гуси 14, утки 7, нейтралы 14"><div class="name">Гусчэпл</div><div class="bar" data-abs="35.71" style="width:35.71%"><span style="width:40.0000%;background:#b6ebba" title="гуси: 14"></span><span style="width:20.0000%;background:#f08a8a" title="утки: 7"></span><span style="width:40.0000%;background:#f6cd83" title="нейтралы: 14"></span></div><div class="num">35 партий</div></div>
+<div class="row" data-info="&lt;b&gt;Матушка гусыня&lt;/b&gt;&lt;br&gt;33 партии: гуси 20, утки 6, нейтралы 7"><div class="name">Матушка гусыня</div><div class="bar" data-abs="33.67" style="width:33.67%"><span style="width:60.6061%;background:#b6ebba" title="гуси: 20"></span><span style="width:18.1818%;background:#f08a8a" title="утки: 6"></span><span style="width:21.2121%;background:#f6cd83" title="нейтралы: 7"></span></div><div class="num">33 партии</div></div>
+<div class="row" data-info="&lt;b&gt;Усадьба Крякв&lt;/b&gt;&lt;br&gt;33 партии: гуси 20, утки 5, нейтралы 8"><div class="name">Усадьба Крякв</div><div class="bar" data-abs="33.67" style="width:33.67%"><span style="width:60.6061%;background:#b6ebba" title="гуси: 20"></span><span style="width:15.1515%;background:#f08a8a" title="утки: 5"></span><span style="width:24.2424%;background:#f6cd83" title="нейтралы: 8"></span></div><div class="num">33 партии</div></div>
+<div class="row" data-info="&lt;b&gt;Иглтон спрингс&lt;/b&gt;&lt;br&gt;31 партия: гуси 18, утки 7, нейтралы 6"><div class="name">Иглтон спрингс</div><div class="bar" data-abs="31.63" style="width:31.63%"><span style="width:58.0645%;background:#b6ebba" title="гуси: 18"></span><span style="width:22.5806%;background:#f08a8a" title="утки: 7"></span><span style="width:19.3548%;background:#f6cd83" title="нейтралы: 6"></span></div><div class="num">31 партия</div></div>
+<div class="row" data-info="&lt;b&gt;Черный лебедь&lt;/b&gt;&lt;br&gt;13 партий: гуси 9, утки 2, нейтралы 2"><div class="name">Черный лебедь</div><div class="bar" data-abs="13.27" style="width:13.27%"><span style="width:69.2308%;background:#b6ebba" title="гуси: 9"></span><span style="width:15.3846%;background:#f08a8a" title="утки: 2"></span><span style="width:15.3846%;background:#f6cd83" title="нейтралы: 2"></span></div><div class="num">13 партий</div></div>
+<div class="row weak" data-info="&lt;b&gt;Подвал&lt;/b&gt;&lt;br&gt;8 партий: гуси 2, утки 3, нейтралы 3"><div class="name">Подвал</div><div class="bar" data-abs="8.16" style="width:8.16%"><span style="width:25.0000%;background:#b6ebba" title="гуси: 2"></span><span style="width:37.5000%;background:#f08a8a" title="утки: 3"></span><span style="width:37.5000%;background:#f6cd83" title="нейтралы: 3"></span></div><div class="num">8 партий</div></div>
+<div class="row weak" data-info="&lt;b&gt;Кровавая гавань&lt;/b&gt;&lt;br&gt;1 партия: гуси 1"><div class="name">Кровавая гавань</div><div class="bar" data-abs="1.02" style="width:1.02%"><span style="width:100.0000%;background:#b6ebba" title="гуси: 1"></span></div><div class="num">1 партия</div></div>
+</div>
+<script>
+(function () {
+  var box = document.querySelector(".volrows"), modes = document.querySelector(".modes");
+  modes.addEventListener("click", function (event) {
+    var button = event.target.closest("button");
+    if (!button) return;
+    var share = button.dataset.mode === "share";
+    modes.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b === button)); });
+    box.querySelectorAll(".bar").forEach(function (bar) {
+      bar.style.width = share ? "100%" : bar.dataset.abs + "%";
+      bar.querySelectorAll("span").forEach(function (part) {
+        var width = parseFloat(part.style.width);
+        part.textContent = share && width > 12 ? Math.round(width) + "%" : "";
+      });
+    });
+  });
+})();
+</script>
 <div class="legend">
 <span><b style="background:#b6ebba"></b>гуси</span>
 <span><b style="background:#f08a8a"></b>утки</span>
